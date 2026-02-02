@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sysfix-ai"
+version = "0.1.0"
+description = "Safe modular Linux diagnostics tool with AI-assisted fixes"
+authors = [{name = "Tony Stark", email = "tony@starkindustries.com"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "psutil",
+    "click",
+    "openai",  # or whichever AI lib you plan to use
+]
+
+[tool.black]
+line-length = 88
