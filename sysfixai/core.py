@@ -71,7 +71,8 @@ import psutil
 import subprocess
 import shutil
 import os
-from sysfixai.ai import query_granite4, ask_ai_for_fix
+from sysfixai.ai import ask_ai_for_fix
+from termcolor import colored
 from termcolor import colored
 
 def diagnose():
@@ -251,7 +252,7 @@ def handle_memory_hogs():
                 print(f"Skipped {name} (PID {pid}).")
                 break
             elif choice_lower == 'ai':
-                ai_choice = query_granite4(f"Should I kill, optimize, or skip process '{name}' with PID {pid} using {mem:.1f} MB RAM on a Linux system? Answer with one letter: k, o, or s.")
+                ai_choice = ask_ai_for_fix(f"Should I kill, optimize, or skip process '{name}' with PID {pid} using {mem:.1f} MB RAM on a Linux system? Answer with one letter: k, o, or s.")
                 ai_choice = ai_choice.strip().lower()
                 if ai_choice in ('k', 'o', 's'):
                     print(f"AI chose: {ai_choice}")
@@ -296,7 +297,7 @@ def handle_storage():
             print("Skipping storage optimization.")
             break
         elif choice_lower == 'ai':
-            ai_choice = query_granite4("Should I try to free up disk space on the system? Answer yes or no.")
+            ai_choice = ask_ai_for_fix("Should I try to free up disk space on the system? Answer yes or no.")
             if ai_choice.strip().lower().startswith('y'):
                 free_space()
             else:
