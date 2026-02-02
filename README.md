@@ -46,3 +46,4 @@ Initial focus is on read-only diagnostics and safe, low-risk fixes.
 ## License
 
 MIT
+# sysfix-ai
