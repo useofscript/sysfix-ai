@@ -1,49 +1,75 @@
+````markdown
 # sysfix-ai
 
-A safe, modular Linux diagnostics tool that detects common system issues and applies controlled, low-risk fixes with optional AI assistance.
+**Safe, modular Linux diagnostics tool with AI-assisted fixes and interactive user control**
+
+---
 
 ## Overview
 
-sysfix-ai is an open-source project focused on **diagnosis first, automation second**.  
-It collects structured system data, identifies common failure modes, and explains likely root causes before suggesting or applying vetted fixes.
+sysfix-ai is designed to detect common Linux system issues—like high memory usage, audio problems, storage capacity, overheating hardware, and motherboard/BIOS warnings—and provide safe, guided fixes. 
 
-All remediation actions are explicitly whitelisted, risk-scored, and auditable.  
-Arbitrary command execution is intentionally not supported.
+Using an intuitive CLI, it offers detailed diagnostics and lets you choose how to handle each problem: kill processes, optimize memory, or skip. You can also opt for AI automation to let sysfix-ai handle everything with caution.
 
-## Goals
+---
 
-- Diagnose common Linux system issues
-- Explain problems clearly and transparently
-- Apply low-risk, controlled fixes
-- Keep a human in the loop by default
-- Avoid unsafe “one-click optimizer” behavior
+## Features
 
-## Non-Goals
+- **Comprehensive diagnostics** for audio, memory leaks, storage, CPU/GPU temperature, and hardware status  
+- **Interactive fixes**: Prompted actions like kill (`k`), optimize (`o`), skip (`s`), or automate (`a`)  
+- **AI-assisted automation** option for hands-free, careful repairs  
+- **Critical BIOS/motherboard warnings** with strong safety alerts — automatic BIOS fixes are disabled by default  
+- Modular and extensible architecture for easy expansion
 
-- Kernel replacement
-- Firmware or BIOS flashing
-- Bootloader modification
-- Blind system “tuning” or optimization
+---
 
-## Supported Systems
+## Installation
 
-- Fedora (primary target)
-- Other systemd-based distributions (planned)
+```bash
+git clone https://github.com/useofscript/sysfix-ai.git
+cd sysfix-ai
+pip install -r requirements.txt
+````
 
-## Architecture (High Level)
+---
 
-- System data collection (logs, disk, services, network, audio)
-- Rule-based diagnostics
-- Optional AI-assisted analysis
-- Whitelisted remediation actions
-- Post-fix verification
+## Usage
 
-## Project Status
+### Run diagnostics
 
-Early development.  
-Initial focus is on read-only diagnostics and safe, low-risk fixes.
+```bash
+python -m sysfixai.cli check
+```
+
+### Apply fixes interactively
+
+```bash
+python -m sysfixai.cli fix <issue_number>
+```
+
+Follow on-screen prompts:
+
+* `k`: Kill the problematic process
+* `o`: Optimize memory usage
+* `s`: Skip this process
+* `a`: Automate fixing remaining issues
+
+---
+
+## Important Safety Notes
+
+* **BIOS and motherboard checks show warnings only.**
+* Automatic BIOS flashing or modification is **disabled** due to high risk of bricking your device.
+* Always backup important data before applying system-level fixes.
+
+---
+
+## Contributing
+
+Pull requests and issues welcome! Please follow coding standards and write tests.
+
+---
 
 ## License
 
-MIT
-# sysfix-ai
+MIT License — see [LICENSE](LICENSE)
