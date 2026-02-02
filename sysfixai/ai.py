@@ -1,21 +1,40 @@
 import subprocess
-import json
 
 def query_granite4(prompt: str) -> str:
     """
-    Sends the prompt to the Granite4 Ollama model via CLI and returns the AI response as text.
+    Query the Granite4 Ollama model via the CLI.
+
+    Args:
+        prompt (str): The prompt to send to the AI model.
+
+    Returns:
+        str: The AI model's response.
     """
     try:
-        # Run the ollama query command with granite4 model and prompt
         result = subprocess.run(
-            ["ollama", "query", "granite4", prompt],
+            ["ollama", "run", "granite4", "--prompt", prompt],
             capture_output=True,
             text=True,
             check=True
         )
-        # Parse the JSON output from ollama
-        output = json.loads(result.stdout)
-        # Extract the AI's response text
-        return output.get("response", "").strip()
-    except Exception as e:
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
         return f"AI query failed: {e}"
+
+def ask_ai_for_fix(issue: str) -> str:
+    """
+    Given an issue description, ask the Granite4 model for a recommended fix.
+
+    Args:
+        issue (str): Description of the problem.
+
+    Returns:
+        str: The AI’s recommended fix or advice.
+    """
+    prompt = (
+        f"You are a Linux systems expert AI. The following issue was detected:\n\n{issue}\n\n"
+        "Provide a concise and practical recommendation on how to fix this issue, "
+        "or what steps to take next."
+    )
+    response = query_granite4(prompt)
+    return response
