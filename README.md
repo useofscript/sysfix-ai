@@ -1,4 +1,3 @@
-````markdown
 # sysfix-ai
 
 **Safe, modular Linux diagnostics tool with AI-assisted fixes and interactive user control**
@@ -23,8 +22,6 @@ Using an intuitive CLI, it offers detailed diagnostics and lets you choose how t
 
 ---
 
-
-
 ## Requirements
 
 **Operating System:** Linux (tested on Fedora, Ubuntu, Debian)
@@ -44,17 +41,16 @@ pip install psutil click
 - Download and install from: https://ollama.com/download
 - Start the Ollama server: `ollama serve`
 
-
 **Required Ollama model:** lfm2.5-thinking
 
 You must download the model from the official Ollama model registry:
 
 1. Make sure Ollama is installed and running (`ollama serve`).
 2. Pull the model using this command:
-	```bash
-	ollama pull lfm2.5-thinking
-	```
-	This will download the model from Ollama's official servers to your local machine.
+    ```bash
+    ollama pull lfm2.5-thinking
+    ```
+    This will download the model from Ollama's official servers to your local machine.
 3. The model will be stored in your Ollama models directory (usually `~/.ollama/models`).
 
 For more details, see: https://ollama.com/library/lfm2.5-thinking
@@ -72,8 +68,6 @@ cd sysfix-ai
 pip install psutil click
 # Install Ollama and pull the lfm2.5-thinking model (see above)
 ```
-
----
 
 ---
 
