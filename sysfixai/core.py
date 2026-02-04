@@ -71,7 +71,7 @@ import psutil
 import subprocess
 import shutil
 import os
-from sysfixai.ai import ask_ai_for_fix
+from sysfixai.ai import ask_ai_for_fix, ask_ai_deep_dive
 from termcolor import colored
 from termcolor import colored
 
@@ -314,4 +314,40 @@ def free_space():
         print("Freed up disk space.")
     except subprocess.CalledProcessError:
         print("Failed to free space automatically.")
+def ai_deep_dive():
+    """Interactive AI troubleshooting mode for complex issues."""
+    if not is_ollama_running():
+        print("[WARNING] Ollama server is not running. Please start it with: ollama serve")
+        return
+    
+    print("Welcome to Deep Dive mode. I will ask you questions to diagnose complex issues.")
+    
+    # Step 1: Ask about the main issue
+    main_issue = input("What is the main issue you are experiencing? (e.g., slow performance, crashes, network problems): ")
+    
+    # Step 2: Ask for additional details
+    details = input("Please provide any additional details or symptoms: ")
+    
+    # Step 3: Ask about recent changes
+    recent_changes = input("Have you made any recent changes to your system? (e.g., software installations, updates): ")
+    
+    # Step 4: Combine inputs and query the AI
+    combined_prompt = (
+        f"User Issue: {main_issue}\n"
+        f"Details: {details}\n"
+        f"Recent Changes: {recent_changes}\n"
+        "Provide a detailed analysis and step-by-step troubleshooting guide."
+    )
+    
+    ai_response = ask_ai_deep_dive(combined_prompt)
+    print(f"\nAI Analysis:\n{ai_response}")
+    
+    # Step 5: Ask if the user wants to apply any fixes
+    apply_fix = input("\nDo you want to apply any of the suggested fixes? (y/n): ").strip().lower()
+    if apply_fix == 'y':
+        print("Applying fixes...")
+        # Here you can add logic to apply fixes based on the AI response
+        print("Fixes applied (simulated).")
+    else:
+        print("No fixes applied. You can manually follow the AI's recommendations.")
 

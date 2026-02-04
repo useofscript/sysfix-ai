@@ -41,3 +41,23 @@ def ask_ai_for_fix(issue: str) -> str:
     )
     response = query_lfm25_thinking(prompt)
     return response
+
+def ask_ai_deep_dive(prompt: str) -> str:
+    """
+    Given a detailed issue description, ask the lfm2.5-thinking model for an in-depth analysis.
+    Args:
+        prompt (str): Detailed description of the problem and context.
+    Returns:
+        str: The AI’s detailed analysis and troubleshooting guide.
+    """
+    detailed_prompt = (
+        f"You are a Linux systems expert AI. The user has provided the following detailed issue:\n\n{prompt}\n\n"
+        "Provide a comprehensive analysis, including:"
+        "1. Potential root causes."
+        "2. Step-by-step troubleshooting guide."
+        "3. Commands or tools to use for diagnosis."
+        "4. Safety warnings or precautions."
+        "5. Recommendations for prevention."
+    )
+    response = query_lfm25_thinking(detailed_prompt)
+    return response
