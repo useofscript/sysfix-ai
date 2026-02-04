@@ -1,6 +1,6 @@
 
 import click
-from sysfixai.core import diagnose, apply_fix, ai_auto_fix
+from sysfixai.core import diagnose, apply_fix, ai_auto_fix, ai_deep_dive
 
 @click.group()
 def cli():
