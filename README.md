@@ -16,7 +16,9 @@ Using an intuitive CLI, it offers detailed diagnostics and lets you choose how t
 
 - **Comprehensive diagnostics** for audio, memory leaks, storage, CPU/GPU temperature, and hardware status  
 - **Interactive fixes**: Prompted actions like kill (`k`), optimize (`o`), skip (`s`), or automate (`a`)  
-- **AI-assisted automation** option for hands-free, careful repairs  
+- **AI-assisted automation** with two modes:
+  - **Fast Sweep**: Quick diagnostics for common issues (e.g., audio, drivers, disk health).
+  - **Deep Dive**: Interactive troubleshooting for complex problems with detailed AI analysis.
 - **Critical BIOS/motherboard warnings** with strong safety alerts — automatic BIOS fixes are disabled by default  
 - Modular and extensible architecture for easy expansion
 
@@ -84,6 +86,22 @@ python -m sysfixai.cli check
 ```bash
 python -m sysfixai.cli fix <issue_number>
 ```
+
+### AI Modes
+
+When prompted to use AI, you can choose between two modes:
+
+1. **Fast Sweep Mode**: Quick diagnostics for common issues.
+   ```bash
+   python -m sysfixai.cli check
+   # Select "y" for AI mode, then choose mode "1"
+   ```
+
+2. **Deep Dive Mode**: Interactive troubleshooting for complex problems.
+   ```bash
+   python -m sysfixai.cli check
+   # Select "y" for AI mode, then choose mode "2"
+   ```
 
 Follow on-screen prompts:
 
