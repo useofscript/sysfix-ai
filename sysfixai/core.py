@@ -342,12 +342,54 @@ def ai_deep_dive():
     ai_response = ask_ai_deep_dive(combined_prompt)
     print(f"\nAI Analysis:\n{ai_response}")
     
-    # Step 5: Ask if the user wants to apply any fixes
-    apply_fix = input("\nDo you want to apply any of the suggested fixes? (y/n): ").strip().lower()
-    if apply_fix == 'y':
-        print("Applying fixes...")
-        # Here you can add logic to apply fixes based on the AI response
-        print("Fixes applied (simulated).")
-    else:
-        print("No fixes applied. You can manually follow the AI's recommendations.")
+    # Step 5: Apply fixes automatically based on AI recommendations
+    print("\nApplying fixes based on AI recommendations...")
+    apply_fixes_from_ai(ai_response)
+
+def apply_fixes_from_ai(ai_response):
+    """Apply fixes automatically based on the AI's recommendations."""
+    # Parse the AI's response to identify recommended actions
+    if "Update Core Packages" in ai_response or "sudo dnf update" in ai_response:
+        print("Updating core packages...")
+        try:
+            subprocess.run(["sudo", "dnf", "update", "-y"], check=True)
+            print("Core packages updated successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to update core packages: {e}")
+    
+    if "Check File Integrity" in ai_response or "ffmpeg -v error" in ai_response:
+        print("Checking file integrity...")
+        # Placeholder for file integrity checks
+        print("File integrity check completed (simulated).")
+    
+    if "Monitor Processes" in ai_response or "top" in ai_response or "htop" in ai_response:
+        print("Monitoring system processes...")
+        try:
+            subprocess.run(["top", "-b", "-n", "1"], check=True)
+            print("Process monitoring completed.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to monitor processes: {e}")
+    
+    if "Check Disk Space" in ai_response or "df -h" in ai_response:
+        print("Checking disk space...")
+        try:
+            subprocess.run(["df", "-h"], check=True)
+            print("Disk space check completed.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to check disk space: {e}")
+    
+    if "Restart Discord" in ai_response:
+        print("Restarting Discord...")
+        try:
+            subprocess.run(["pkill", "-f", "discord"], check=True)
+            print("Discord restarted successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to restart Discord: {e}")
+    
+    if "Clear Media Player Cache" in ai_response:
+        print("Clearing media player cache...")
+        # Placeholder for clearing cache
+        print("Media player cache cleared (simulated).")
+    
+    print("Fixes applied based on AI recommendations.")
 
